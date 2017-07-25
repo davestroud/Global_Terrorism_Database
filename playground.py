@@ -1,5 +1,21 @@
+import os
+import pprint
 import csv
-with open('globalterrorism.csv') as csvfile:
-    reader = csv.DictReader(csvfile)
-    for row in reader:
-        print(row['country_txt'], row['region_txt'])
+
+DATADIR = ""
+DATAFILE = "globalterrorism.csv"
+
+def parse_csv(datafile):
+    data = []
+    n = 0
+    with open(datafile, 'rb') as sd:
+        r = csv.DictReader(sd)
+        for line in r:
+            data.append(line)
+    return data
+
+if __name__ == '__main__':
+    datafile = os.path.join(DATADIR, DATAFILE)
+    parse_csv(datafile)
+    d = parse_csv(datafile)
+    pprint.pprint(d)
